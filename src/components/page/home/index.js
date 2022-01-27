@@ -1,23 +1,11 @@
 import React from 'react';
 import {Card, Col, Container, Row} from "react-bootstrap";
-import {useDispatch, useSelector} from "react-redux";
-import {increseCount} from "../../../reducers/counter";
 
 const Home = () => {
-  const dispatch = useDispatch();
 
-  const { count } = useSelector(state => state.counter);
-
-  const increse = () => {
-    // store에 있는 state 바꾸는 함수 실행
-    dispatch(increseCount());
-  };
-
-  return  <>
+  return <>
     <div>
       <Container fluid>
-        {count}
-        <button onClick={increse}>증가</button>
         <div>
           <div className="text-center p-4">
             <h2 data-aos="fade-right"># 하는것들</h2>
@@ -27,7 +15,8 @@ const Home = () => {
               <Card>
                 <Card.Body>
                   <Card.Title>포스팅</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">개발/일상/쓰고싶은거</Card.Subtitle>
+                  <Card.Subtitle
+                      className="mb-2 text-muted">개발/일상/쓰고싶은거</Card.Subtitle>
                   <Card.Text>
                     <p>
                       - 분류는 Tag로 구분, Tag 분류 보기 가능, 반응형<br/>
@@ -44,7 +33,8 @@ const Home = () => {
               <Card>
                 <Card.Body>
                   <Card.Title>집창고</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">이것저것 해보고 싶은 것들</Card.Subtitle>
+                  <Card.Subtitle className="mb-2 text-muted">이것저것 해보고 싶은
+                    것들</Card.Subtitle>
                   <Card.Text>
                     <p>
                       - 크롤링 구현, 현 위치 기준 근처 영화관 찾기(with Google Map)<br/>
@@ -61,7 +51,8 @@ const Home = () => {
               <Card>
                 <Card.Body>
                   <Card.Title>웹폴더</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">개인 저장함(로그인필요)</Card.Subtitle>
+                  <Card.Subtitle className="mb-2 text-muted">개인
+                    저장함(로그인필요)</Card.Subtitle>
                   <Card.Text>
                     <p>
                       - HTML5를 통한 파일 제어<br/>

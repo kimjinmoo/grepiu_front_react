@@ -1,7 +1,5 @@
 import {useLocation} from "react-router-dom";
-import react, {useEffect, useState} from 'react';
-import defaultLogger from "redux-logger/src";
-import {Container} from "react-bootstrap";
+import {useEffect, useState} from 'react';
 
 const GrepIUNavigator = () => {
   const location = useLocation();
@@ -9,6 +7,9 @@ const GrepIUNavigator = () => {
 
   const display = (path) => {
     switch (path) {
+      case "/login":
+        setNavi("로그인");
+        break;
       case "/":
         setNavi("홈");
         break;

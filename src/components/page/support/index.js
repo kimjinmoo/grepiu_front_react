@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {EditorState} from 'draft-js';
 import {Editor} from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import {Form} from "react-bootstrap";
+import {Button, Form} from "react-bootstrap";
 
 const Support = () => {
   const [editorState, setEditorState] = useState(
@@ -32,6 +32,9 @@ const Support = () => {
         onEditorStateChange={state => setEditorState((state))}
 
     />
+    <div className="d-flex align-items-end">
+      <Button className="ms-auto">문의하기</Button>
+    </div>
   </div>
 };
 

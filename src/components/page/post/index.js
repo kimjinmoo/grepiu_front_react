@@ -11,7 +11,7 @@ const Post = () => {
   const [page, setPage] = useState(0);
   const [tags, setTags] = useState([]);
   const [lists, setLists] = useState([]);
-  const [totalPage, setTotalPage] = useState(0);
+  const [totalCount, setTotalCount] = useState(0);
 
   // 태그를 가져온다.
   const fetchTags = () => {
@@ -30,7 +30,7 @@ const Post = () => {
     }).then(res => {
       if (res.status === 200) {
         // 포스팅 총 수
-        setTotalPage(res.data.tCount);
+        setTotalCount(res.data.tCount);
         // 리스트
         let appendList = [...lists, ...res.data.list];
         setLists(appendList);
@@ -46,7 +46,7 @@ const Post = () => {
   // 무한 스클롤 대응
   const [infiniteRef] = useInfiniteScroll({
     loading,
-    hasNextPage: totalPage > lists.length,
+    hasNextPage: totalCount > lists.length,
     onLoadMore: fetchMoreData
   });
 
@@ -83,7 +83,7 @@ const Post = () => {
               </div>
           )
         }
-        {totalPage > lists.length && (
+        {totalCount > lists.length && (
             <div ref={infiniteRef}>
               <h1>loading!!</h1>
             </div>

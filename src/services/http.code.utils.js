@@ -1,0 +1,18 @@
+// HTTP OK
+export const HTTP_OK = 200;
+// HTTP CREATED
+export const HTTP_OK_CREATED = 201;
+// HTTP ACCEPT
+export const HTTP_OK_ACCEPT = 202;
+// HTTP PAGE NOT FOUND
+export const HTTP_PAGE_NOT_FOUND = 404;
+// HTTP SERVER ERROR
+export const HTTP_SEVER_ERROR = 500;
+
+export default {
+  HTTP_OK,
+  HTTP_OK_CREATED,
+  HTTP_OK_ACCEPT,
+  HTTP_PAGE_NOT_FOUND,
+  HTTP_SEVER_ERROR
+}
