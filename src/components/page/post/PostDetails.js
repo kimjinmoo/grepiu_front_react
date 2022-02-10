@@ -44,7 +44,7 @@ const PostDetails = () => {
             <div className="ql-editor"
                  dangerouslySetInnerHTML={{__html: details?.post?.content}}></div>
             <div className="d-flex justify-content-end">
-              <Moment interval={1000} format="YYYY/MM/DD MM:SS"
+              <Moment interval={1000} format="YYYY/MM/DD HH:MM"
                            date={details?.post?.modifyDate}/>
             </div>
             {
