@@ -6,6 +6,8 @@ export const HTTP_OK_CREATED = 201;
 export const HTTP_OK_ACCEPT = 202;
 // HTTP PAGE NOT FOUND
 export const HTTP_PAGE_NOT_FOUND = 404;
+// HTTP 권한 없음
+export const HTTP_UNAUTHORIZED = 401;
 // HTTP SERVER ERROR
 export const HTTP_SEVER_ERROR = 500;
 
@@ -14,5 +16,6 @@ export default {
   HTTP_OK_CREATED,
   HTTP_OK_ACCEPT,
   HTTP_PAGE_NOT_FOUND,
+  HTTP_UNAUTHORIZED,
   HTTP_SEVER_ERROR
 }

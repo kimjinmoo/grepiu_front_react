@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import AdminService from "../../../services/admin.service"
 import {
   deleteFolder,
   fetchCloud,
@@ -9,8 +10,16 @@ import {Button, ButtonGroup, Col, Form, InputGroup, Row} from "react-bootstrap";
 import ImageReader from "./readers/ImageReader";
 import AudioReader from "./readers/AudioReader";
 import FileAsSave from "./readers/FileAsSave";
+import {NotificationManager} from "react-notifications";
+import {useDispatch, useSelector} from "react-redux";
+import {HTTP_OK} from "../../../services/http.code.utils";
+import {logout} from "../../../actions/authorization";
 
 const Cloud = () => {
+  // user
+  const {user: currentUser} = useSelector(state => state.authorization);
+  // dispatch
+  const dispatch = useDispatch();
 
   const [parentId, setParentId] = useState('');
   const [upperInfo, setUpperInfo] = useState({});
@@ -34,6 +43,18 @@ const Cloud = () => {
       setFiles(data.list.filter(item => item.attribute === 'F'));
       setUpperInfo(data.upperInfo);
       setFolderName(data.upperInfo.name ? data.upperInfo.name : '')
+    }).catch(e=>{
+      // 토큰 확인
+      AdminService.tokenValidation({
+        token: currentUser.accessToken
+      }).then(response=>{
+        if(response.status === HTTP_OK) {
+          if(!response.data.isValid) {
+            dispatch(logout());
+          }
+        }
+      })
+      NotificationManager.warning(e.message);
     });
   }
 

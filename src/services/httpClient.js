@@ -8,6 +8,7 @@ const instance = axios.create({
     "Content-Type": "application/json",
   },
 });
+// 요청
 instance.interceptors.request.use(function (config) {
   let user = Store.read();
   // 유저값이 존재 하면 header에 토큰을 등록한다.
@@ -18,5 +19,9 @@ instance.interceptors.request.use(function (config) {
   }
   return config;
 });
+// 응답
+instance.interceptors.response.use(response => response, error => {
+  return Promise.reject(error);
+})
 
 export default instance;

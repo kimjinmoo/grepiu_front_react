@@ -1,14 +1,12 @@
-import react, {useEffect, useState} from 'react';
-import {fetchPostTags} from "../../../services/service";
-
-const Tags = ({tags = []}) => {
+const Tags = ({tags = [], currentTags, onClickHandler}) => {
 
   return <>
-    All Tags
+    <div className="mt-2"><a href="#" className="text-decoration-none" onClick={()=>onClickHandler({hashTags: ''})}>All Tags</a></div>
+    <hr/>
     {
       tags ? <>
         {
-          tags.map(o=><div key={o.name}>{o.name}({o.count})</div>)
+          tags.map(o => <div key={o.name}><a href="#" className={`${currentTags === o.name?'bg-info':''} text-decoration-none`} onClick={() => onClickHandler({hashTags: o.name})}>{o.name}({o.count})</a></div>)
         }
       </> : <>Empty</>
     }

@@ -5,15 +5,25 @@ const Home = () => {
 
   return <>
     <div>
-      <Container fluid>
+      <Container>
+        <div className="text-center">
+          <h2 data-aos="fade-right"># 새소식</h2>
+        </div>
+        <div>
+          관리자 모드 만들어서 올릴 예정
+        </div>
+      </Container>
+      <Container>
         <div>
           <div className="text-center p-4">
-            <h2 data-aos="fade-right"># 하는것들</h2>
+            <h2 data-aos="fade-right"># My</h2>
           </div>
           <Row>
-            <Col>
+            <Col lg={4}>
               <Card>
-                <Card.Body>
+                <Card.Body style={{
+                  height: '250px'
+                }}>
                   <Card.Title>포스팅</Card.Title>
                   <Card.Subtitle
                       className="mb-2 text-muted">개발/일상/쓰고싶은거</Card.Subtitle>
@@ -29,27 +39,31 @@ const Home = () => {
                 </Card.Body>
               </Card>
             </Col>
-            <Col>
+            <Col lg={4}>
               <Card>
-                <Card.Body>
-                  <Card.Title>집창고</Card.Title>
+                <Card.Body style={{
+                  height: '250px'
+                }}>
+                  <Card.Title>토이프로젝트</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">이것저것 해보고 싶은
                     것들</Card.Subtitle>
                   <Card.Text>
                     <p>
-                      - 크롤링 구현, 현 위치 기준 근처 영화관 찾기(with Google Map)<br/>
-                      - 롯데 시내마 상영 영화/상영시간 크롤링<br/>
-                      - Selenium 이용하여 구연<br/>
-                      - 프럭시 서버로 크롤링해야됨(aws 접근문제)<br/>
+                      - 토이프로젝트 앱들<br/>
+                      - 실시간 투표<br/>
+                      - 크롤링 테스트<br/>
+                      - 토이프로젝트 슬랙 채널<br/>
                     </p>
                   </Card.Text>
-                  <Card.Link href="/lab">보러가기</Card.Link>
+                  <Card.Link href="/toy">보러가기</Card.Link>
                 </Card.Body>
               </Card>
             </Col>
-            <Col>
+            <Col lg={4}>
               <Card>
-                <Card.Body>
+                <Card.Body style={{
+                  height: '250px'
+                }}>
                   <Card.Title>웹폴더</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">개인
                     저장함(로그인필요)</Card.Subtitle>
@@ -58,7 +72,7 @@ const Home = () => {
                       - HTML5를 통한 파일 제어<br/>
                       - Web을 통한 자료 공유<br/>
                       - 음악 및 Text 읽기<br/>
-                      - 추후 S3로 변경해서 저장 해볼 예정<br/>
+                      - AWS S3사용<br/>
                     </p>
                   </Card.Text>
                   <Card.Link href="/cloud">보러가기</Card.Link>
@@ -68,56 +82,54 @@ const Home = () => {
           </Row>
         </div>
       </Container>
-      <Container fluid>
-        <img src="/resources/images/post.png" alt="images"/>
-        <Row>
-          <Col>
-            <h2>#</h2>
-          </Col>
-        </Row>
-        <Row>
-          <Col sm>
-            <h3>Server</h3>
-            <h6>Java</h6>
-            <h6>Python</h6>
-            <h6>Node</h6>
-            <h6>Ehcache</h6>
-          </Col>
-          <Col sm>
-            <h3>Front</h3>
-            <h6>Vue</h6>
-            <h6>React</h6>
-            <h6>Javascript</h6>
-            <h6>freemarker</h6>
-          </Col>
-          <Col sm>
-            <h3>Authorization</h3>
-            <h6>SpringBoot Oauth2</h6>
-            <h6>Spring Security</h6>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <h3>데이터</h3>
-            <h6>Kafka</h6>
-            <h6>엘라스틱서치</h6>
-            <h6>fluentd</h6>
-            <h6>logstash</h6>
-          </Col>
-          <Col>
-            <h3>ETC</h3>
-            <h6>Flutter</h6>
-            <h6>Android</h6>
-            <h6>RDB/NOSQL</h6>
-          </Col>
-          <Col>
-            <h3>OS</h3>
-            <h6>rockey</h6>
-            <h6>centos</h6>
-            <h6>Apache</h6>
-            <h6>Nginx</h6>
-          </Col>
-        </Row>
+      <Container className="mt-3" style={{
+        backgroundColor: "#32383e",
+        color: "#f0f0f0"
+      }}>
+        <div className="w-auto p-3">
+          <Row className="text-center">
+            <Col lg={4}>
+              <h3>Server</h3>
+              <h6>Java</h6>
+              <h6>Node</h6>
+              <h6>Python</h6>
+              <h6>Ehcache</h6>
+            </Col>
+            <Col lg={4}>
+              <h3>Front</h3>
+              <h6>Vue</h6>
+              <h6>React</h6>
+              <h6>freemarker</h6>
+            </Col>
+            <Col lg={4}>
+              <h3>Authorization</h3>
+              <h6>SpringBoot Oauth2</h6>
+              <h6>Spring Security</h6>
+            </Col>
+          </Row>
+          <Row className="text-center mt-2">
+            <Col lg={4}>
+              <h3>데이터</h3>
+              <h6>Kafka</h6>
+              <h6>엘라스틱서치</h6>
+              <h6>fluentd</h6>
+              <h6>logstash</h6>
+            </Col>
+            <Col lg={4}>
+              <h3>ETC</h3>
+              <h6>Flutter</h6>
+              <h6>Android</h6>
+              <h6>RDB/NOSQL</h6>
+            </Col>
+            <Col lg={4}>
+              <h3>OS</h3>
+              <h6>rockey</h6>
+              <h6>centos</h6>
+              <h6>Apache</h6>
+              <h6>Nginx</h6>
+            </Col>
+          </Row>
+        </div>
       </Container>
     </div>
   </>

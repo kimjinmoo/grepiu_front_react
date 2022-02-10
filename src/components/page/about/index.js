@@ -9,7 +9,7 @@ const About = () => {
       <h2>grepiu.com</h2>
       <h6>AWS EC2(t3a.small)</h6>
       <h6>Spring Boot 2.0</h6>
-      <h6>React, Redux</h6>
+      <h6>React, Redux, Bootstrap 5</h6>
       <h6>LoginSpring Security + Oauth2</h6>
     </Container>
   </>

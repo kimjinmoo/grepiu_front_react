@@ -1,5 +1,18 @@
 import instance from "./httpClient";
 
+// 토큰 유효성 체크
+const tokenValidation = async ({
+    token
+}) => {
+  const response = await instance.get('/oauth/check', {
+    params: {
+      accessToken: token
+    }
+  });
+
+  return response;
+}
+
 // 포스트 추가
 const addPost = async ({
   subject,
@@ -61,11 +74,11 @@ const deleteHashTags = async ({
   name
 }) => {
   const response = await instance.delete(`/grepiu/post/hash/${name}`);
-
   return response;
 }
 
 export default {
+  tokenValidation,
   deleteHashTags,
   addHashTags,
   fetchHashTags,

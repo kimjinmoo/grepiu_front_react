@@ -4,6 +4,7 @@ import {useEffect, useState} from 'react';
 const GrepIUNavigator = () => {
   const location = useLocation();
   const [navi, setNavi] = useState("");
+  const [bgColor, setBgColor] = useState("#0f0f0f");
 
   const display = (path) => {
     switch (path) {
@@ -44,16 +45,15 @@ const GrepIUNavigator = () => {
   }, [location.pathname])
 
   return <>
-    <div style={{
-      height: '3rem',
-      borderWidth: '1px',
-      borderColor: '#c6c8ca',
-      borderStyle: 'none none solid none',
-      margin: 'auto'
-    }}>
-      <div className="align-self-center">
-        <h6>{navi}</h6>
-      </div>
+    <div
+        className="bg-light d-flex flex-column justify-content-center align-items-center"
+        style={{
+          height: '3rem',
+          borderWidth: '1px',
+          borderColor: '#f0f0f0',
+          borderStyle: 'none none solid none'
+        }}>
+      <h6>{navi}</h6>
     </div>
   </>
 }

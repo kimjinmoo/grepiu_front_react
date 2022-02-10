@@ -20,12 +20,12 @@ const GrepIUNav = () => {
       <Navbar.Brand as={Link} to="/">GrepIU</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav.Link as={Link} to="/about">관하여...</Nav.Link>
-        <Nav.Link as={Link} to="/post">포스팅</Nav.Link>
-        <Nav.Link as={Link} to="/toy">토이프로젝트</Nav.Link>
-        <Nav.Link as={Link} to="/cloud">클라우드</Nav.Link>
-        <Nav.Link as={Link} to="/admin">관리자</Nav.Link>
-        <Nav.Link as={Link} to="/support">지원받기</Nav.Link>
+        <Nav.Link as={Link} to="/about" className="text-white-50">소개</Nav.Link>
+        <Nav.Link as={Link} to="/post" className="text-white-50">포스팅</Nav.Link>
+        <Nav.Link as={Link} to="/toy" className="text-white-50">토이프로젝트</Nav.Link>
+        <Nav.Link as={Link} to="/cloud" className="text-white-50">클라우드</Nav.Link>
+        <Nav.Link as={Link} to="/admin" className="text-white-50">관리자</Nav.Link>
+        <Nav.Link as={Link} to="/support" className="text-white-50">지원받기</Nav.Link>
         <Nav className="me-auto">
           <NavDropdown title={currentUser ? currentUser.id : '계정'}
                        id="basic-nav-dropdown">
