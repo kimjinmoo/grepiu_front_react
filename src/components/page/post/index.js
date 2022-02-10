@@ -123,9 +123,11 @@ const Post = () => {
                             color: '#72c02c'
                           }}>#{tags}</span>)}</Card.Subtitle>
                       <Card.Text>
-                        {res.regId}/<Moment interval={1000}
-                                            format="YYYY-MM-DD HH:MM"
-                                            date={res.regDate}/>
+                        <div className="d-flex justify-content-end">
+                          <Moment interval={1000}
+                                  format="YYYY-MM-DD HH:MM"
+                                  date={res.regDate}/>
+                        </div>
                       </Card.Text>
                     </Card.Body>
                   </Card>
