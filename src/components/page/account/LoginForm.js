@@ -28,41 +28,32 @@ const LoginForm = () => {
     return <Navigate to="/" replace/>
   }
   return <>
-    <h1>#Login</h1>
-    <div>
+    <div className="text-center">
+      <h1>#Login</h1>
       <p>아래 로그인을 지원합니다.</p>
-      <Container>
-        <Row>
-          <Col md="5">
-            <Form.Control
-                type="text"
-                id="id"
-                onChange={event => setId(event.target.value)}
-                placeholder="아이디를 입력하여 주세요"
-                value={id}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col md="5">
-            <Form.Control
-                type="password"
-                id="password"
-                onChange={event => setPassword(event.target.value)}
-                placeholder="비밀번호를 입력하여 주세요"
-                value={password}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <div>
-              <Button type="button" variant="primary" className="mb-3"
-                      onClick={onLogin}>로그인</Button>
-            </div>
-          </Col>
-        </Row>
-      </Container>
+    </div>
+    <div className="d-flex justify-content-center">
+      <div>
+        <Form.Control
+            type="text"
+            id="id"
+            onChange={event => setId(event.target.value)}
+            placeholder="아이디를 입력하여 주세요"
+            value={id}
+        />
+        <Form.Control
+            type="password"
+            id="password"
+            onChange={event => setPassword(event.target.value)}
+            placeholder="비밀번호를 입력하여 주세요"
+            value={password}
+            autoComplete="off"
+        />
+        <div className="text-center m-3">
+          <Button type="button" variant="primary" className="mb-3"
+                  onClick={onLogin}>로그인</Button>
+        </div>
+      </div>
     </div>
   </>
 }

@@ -9,8 +9,10 @@ const Home = () => {
         <div className="text-center">
           <h2 data-aos="fade-right"># 새소식</h2>
         </div>
-        <div>
-          관리자 모드 만들어서 올릴 예정
+        <div className="text-center">
+          <p style={{
+            fontSize:'13vw'
+          }}>HELLO WORLD</p>
         </div>
       </Container>
       <Container>
