@@ -12,7 +12,7 @@ const Home = () => {
         </div>
         <div className="text-center">
           <p style={{
-            fontSize: '13vw'
+            fontSize: '10vw'
           }}>
             <Gradient dir="left-to-right" from="#00DFD8" to="#007CF0">
               HELLO WORLD
