@@ -1,5 +1,6 @@
 import React from 'react';
 import {Card, Col, Container, Row} from "react-bootstrap";
+import Gradient from 'rgt'
 
 const Home = () => {
 
@@ -7,12 +8,16 @@ const Home = () => {
     <div>
       <Container>
         <div className="text-center">
-          <h2 data-aos="fade-right"># 새소식</h2>
+          <h2 data-aos="fade-right"># OOPS</h2>
         </div>
         <div className="text-center">
           <p style={{
-            fontSize:'13vw'
-          }}>HELLO WORLD</p>
+            fontSize: '13vw'
+          }}>
+            <Gradient dir="left-to-right" from="#00DFD8" to="#007CF0">
+              HELLO WORLD
+            </Gradient>
+          </p>
         </div>
       </Container>
       <Container>
