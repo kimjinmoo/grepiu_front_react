@@ -24,7 +24,9 @@ const GrepIUNav = () => {
         <Nav.Link as={Link} to="/post" className="text-white-50">포스팅</Nav.Link>
         <Nav.Link as={Link} to="/toy" className="text-white-50">토이프로젝트</Nav.Link>
         <Nav.Link as={Link} to="/cloud" className="text-white-50">클라우드</Nav.Link>
-        <Nav.Link as={Link} to="/admin" className="text-white-50">관리자</Nav.Link>
+        {
+          currentUser?.role === 'SUPER_ADMIN'?<Nav.Link as={Link} to="/admin" className="text-white-50">관리자</Nav.Link>:<></>
+        }
         <Nav.Link as={Link} to="/support" className="text-white-50">지원받기</Nav.Link>
         <Nav className="me-auto">
           <NavDropdown title={currentUser ? currentUser.id : '계정'}
