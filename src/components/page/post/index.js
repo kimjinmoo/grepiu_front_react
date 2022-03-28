@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Card, Col, Container, Row} from "react-bootstrap";
+import {Card, Col, Container, ProgressBar, Row} from "react-bootstrap";
 import Tags from "./Tags";
 import {fetchPosts, fetchPostTags} from "../../../services/service";
 import {Link} from "react-router-dom";
@@ -15,24 +15,32 @@ import Moment from "react-moment";
  */
 const Post = () => {
 
+  // 로딩
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(false);
+  // 페이로드
   const [payload, setPayload] = useState({
     page: 0,
     hashTags: '',
     searchText: ''
   })
+  // 태그
   const [tags, setTags] = useState([]);
+  // 리스트
   const [lists, setLists] = useState([]);
+  // 리스트 토탈 카운트
   const [totalCount, setTotalCount] = useState(0);
+  // 페이지
   const [totalPage, setTotalPage] = useState(0);
 
   // 태그를 가져온다.
   const fetchTags = () => {
+    setProgress(true);
     fetchPostTags().then(res => {
       if (res.status === 200) {
         setTags(res.data);
       }
-    })
+    }).finally(() => setProgress(false))
   };
 
   // 포스트 값 가져오기
@@ -136,7 +144,13 @@ const Post = () => {
           )
         }
         {
-          lists.length === 0 ? <div className="m-2">데이터가 존재하지 않습니다.</div>
+          lists.length === 0 ? <div className="m-2">
+                {progress ?
+                    <>
+                      <ProgressBar/>
+                    </> :
+                    <>데이터가 존재하지 않습니다.</>}
+              </div>
               : <></>
         }
         {(totalPage - 1) > payload.page && (

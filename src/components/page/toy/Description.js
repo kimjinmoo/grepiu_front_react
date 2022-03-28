@@ -1,6 +1,7 @@
 
 // 설명
 import {Link} from "react-router-dom";
+import Vote from "./vote";
 
 const Description = ({index = 0}) => {
 
@@ -13,6 +14,7 @@ const Description = ({index = 0}) => {
       case 2:
         return crawling();
       case 3:
+        return Vote();
       default :
         return defaultDescription();
     }
