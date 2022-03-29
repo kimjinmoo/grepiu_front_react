@@ -13,49 +13,59 @@ import PostDetails from "../components/page/post/PostDetails";
 export const webRoutes = [
   {
     path: "/",
+    name: "홈",
     element: <Home/>,
     authorize: false
   },
   {
     path: "login",
+    name: "로그인",
     element: <LoginForm/>,
     authorize: false
   }, {
     path: "about",
+    name: "대해서..",
     element: <About/>,
     authorize: false
   }, {
     path: "post",
+    name: "포스팅",
     element: <Post/>,
     authorize: false
   },
   {
     path: "post/:id",
+    name: "포스팅 상세보기",
     element: <PostDetails/>,
     authorize: false
   },
   {
     path: "toy",
+    name: "토이프로젝트",
     element: <Toy/>,
     authorize: false
   },
   {
     path: "admin",
+    name: "관리자",
     element: <Admin/>,
     authorize: true
   },
   {
     path: "admin/:id",
+    name: "관리자 상세보기",
     element: <PostManagementDetail/>,
     authorize: true
   },
   {
     path: "cloud",
+    name: "클라이두",
     element: <Cloud/>,
     authorize: true
   },
   {
     path: "support",
+    name: "지원",
     element: <Support/>,
     authorize: false
   },

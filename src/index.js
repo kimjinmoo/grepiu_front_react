@@ -24,9 +24,8 @@ const enhancer =
 
 // 위에서 만든 reducer를 스토어 만들때 넣어줍니다
 const store = createStore(rootReducer, enhancer);
-
+// 구글 에널리틱스 Set
 ReactGA.initialize('G-K8Z60TN09X');
-ReactGA.send("home");
 
 ReactDOM.render(
     <Provider store={store}>

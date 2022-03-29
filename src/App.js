@@ -3,12 +3,21 @@ import GrepIUNav from "./components/commons/GrepIUNav";
 import {Container} from "react-bootstrap";
 import GrepIUFooter from "./components/commons/GrepIUFooter";
 import GrepIUNavigator from "./components/commons/GrepIUNavigator";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useLocation} from "react-router-dom";
 import {webRoutes} from "./router/web.route";
 import RequireAuth from "./router/RequireAuth";
 import {NotificationContainer} from "react-notifications";
+import {useEffect} from "react";
+import ReactGA from "react-ga4";
 
 function App() {
+
+  const location = useLocation();
+
+  useEffect(() => {
+    ReactGA.send({hitType: "pageview", page: location.pathname});
+  }, [location])
+
   return (
       <div>
         <GrepIUNav/>
