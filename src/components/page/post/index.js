@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {Card, Col, Container, ProgressBar, Row} from "react-bootstrap";
+import {
+  Card,
+  Col,
+  Container,
+  FormControl,
+  ProgressBar,
+  Row
+} from "react-bootstrap";
 import Tags from "./Tags";
 import {fetchPosts, fetchPostTags} from "../../../services/service";
 import {Link} from "react-router-dom";
@@ -47,11 +54,13 @@ const Post = () => {
   const fetch = ({
     cPage,
     hashTags,
+    filter
   }) => {
     fetchPosts({
       currentPage: cPage,
       size: 15,
-      hashTags: hashTags
+      hashTags: hashTags,
+      filter: filter
     }).then(res => {
       if (res.status === 200) {
         // 포스팅 총 수
@@ -67,7 +76,6 @@ const Post = () => {
           let appendList = [...lists, ...res.data.list];
           setLists(appendList);
         }
-
       }
     })
   }
@@ -99,7 +107,8 @@ const Post = () => {
     // 리스트 데이터
     fetch({
       cPage: payload.page,
-      hashTags: payload.hashTags
+      hashTags: payload.hashTags,
+      filter: payload.searchText
     });
   }, [payload])
 
@@ -109,12 +118,34 @@ const Post = () => {
     setPayload({...payload, page: 0, hashTags: filter.hashTags})
   }
 
+  // 검색 바
+  const [searchBar, setSearchBar] = useState(false);
+
+  // 검색 바 토클
+  const searchBarToggle = () => {
+    if (searchBar) {
+      setPayload({...payload, page: 0, searchText: ''})
+    }
+    setSearchBar(!searchBar);
+  }
+
   return <Container>
     <Row>
       <Col xs={0} lg={2} className="d-none d-lg-block"><Tags tags={tags}
+                                                             searchBarToggle={searchBarToggle}
                                                              currentTags={payload.hashTags}
                                                              onClickHandler={onHashTagSearch}/></Col>
       <Col xs={12} lg={10}>
+        {
+          searchBar ?
+              <div className="m-2">
+                <FormControl placeholder="검색어" aria-describedby="searchButton"
+                             value={payload.searchText}
+                             onChange={(e) => setPayload(
+                                 {...payload, searchText: e.target.value})}/>
+              </div> :
+              <></>
+        }
         {
           lists.map(res =>
               <div key={res.id} className="m-2">
