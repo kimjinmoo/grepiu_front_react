@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {
   Card,
-  Col,
-  Container,
-  FormControl,
+  Col, Collapse,
+  Container, Fade, Form,
+  FormControl, InputGroup,
   ProgressBar,
   Row
 } from "react-bootstrap";
@@ -12,6 +12,7 @@ import {fetchPosts, fetchPostTags} from "../../../services/service";
 import {Link} from "react-router-dom";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import Moment from "react-moment";
+import {BsSearch} from "react-icons/bs";
 
 /**
  *
@@ -136,16 +137,24 @@ const Post = () => {
                                                              currentTags={payload.hashTags}
                                                              onClickHandler={onHashTagSearch}/></Col>
       <Col xs={12} lg={10}>
-        {
-          searchBar ?
-              <div className="m-2">
-                <FormControl placeholder="검색어" aria-describedby="searchButton"
-                             value={payload.searchText}
-                             onChange={(e) => setPayload(
-                                 {...payload, searchText: e.target.value})}/>
-              </div> :
-              <></>
-        }
+        <Collapse in={searchBar} dimension="width" >
+          <div className="m-2">
+            <InputGroup style={{
+              minWidth: "100px"
+            }}>
+              <FormControl
+                  type="text"
+                  placeholder="검색어 입력"
+                  value={payload.searchText}
+                  onChange={(e) => setPayload(
+                      {...payload, searchText: e.target.value})}
+              />
+              <InputGroup.Text>
+                <BsSearch/>
+              </InputGroup.Text>
+            </InputGroup>
+          </div>
+        </Collapse>
         {
           lists.map(res =>
               <div key={res.id} className="m-2">
