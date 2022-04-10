@@ -147,7 +147,7 @@ const Post = () => {
                   placeholder="검색어 입력"
                   value={payload.searchText}
                   onChange={(e) => setPayload(
-                      {...payload, searchText: e.target.value})}
+                      {...payload, searchText: e.target.value, hashTags: ''})}
               />
               <InputGroup.Text>
                 <BsSearch/>

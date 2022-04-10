@@ -67,7 +67,7 @@ const PostAddHashTags = () => {
     </InputGroup>
     <div>
       {
-        hashTags.map(tags => <Button
+        hashTags.map((tags, index) => <Button key={`tag_${index}`}
             onClick={() => onRemove(tags.name)}>{tags.name}</Button>)
       }
     </div>

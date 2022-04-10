@@ -78,7 +78,7 @@ const PostAdd = () => {
     fetch();
   }, [])
 
-  return (<div>
+  return <div>
     <Form.Control
         type="text"
         id="subject"
@@ -109,13 +109,13 @@ const PostAdd = () => {
         toolbarClassName="rdw-editor-toolbar"
         wrapperClassName="home-wrapper rdw-editor-wrapper"
         editorClassName="home-editor rdw-editor-main"
-        onEditorStateChange={state => setEditorState(state)}
+        onEditorStateChange={setEditorState}
 
     />
     <ButtonGroup size="lg" className="mb-2">
       <Button onClick={onAdd}>등록</Button>
     </ButtonGroup>
-  </div>);
+  </div>
 }
 
 export default PostAdd;
