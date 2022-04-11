@@ -1,57 +1,40 @@
 import {Button, ButtonGroup, Form} from "react-bootstrap";
-import {Editor} from "react-draft-wysiwyg";
 import React, {useEffect, useState} from "react";
-import {ContentState, convertToRaw, EditorState} from "draft-js";
-import draftToHtml from "draftjs-to-html";
 import {HTTP_OK, HTTP_OK_CREATED} from "../../../../services/http.code.utils";
 import {NotificationManager} from "react-notifications";
 import AdminService from '../../../../services/admin.service'
-import htmlToDraft from "html-to-draftjs";
+import ReactQuill from "react-quill";
+import {formats, modules} from "../../../../constancs/quill_options";
 
 const PostAdd = () => {
 
   // 제목
   const [subject, setSubject] = useState('');
-  // 에디터
-  const [editorState, setEditorState] = useState(
-      EditorState.createEmpty()
-  );
   // 해시태그 데이터
   const [hashTags, setHashTags] = useState([]);
+  // 데이터
+  const [content, setContent] = useState('');
 
   // 추가
   const onAdd = () => {
-    // 에디터
-    const editState = editorState.getCurrentContent();
     // payload
     const payload = {
       subject,
       hashTag: hashTags.filter(item => item.selected).map(item => item.name),
-      content: draftToHtml(convertToRaw(editState))
+      content: content
     }
     // 서버 호출
     AdminService.addPost(payload).then(res => {
       if (res.status === HTTP_OK_CREATED) {
         NotificationManager.success('등록 완료 되었습니다.');
-        // 초기화
-        setSubject('');
-        initEditor();
-        const initHashTags = [...hashTags.map(item => item.selected = false)]
-        setHashTags(initHashTags);
-      }
-    })
-  }
 
-  // 에디터를 초기화 한다.
-  const initEditor = () => {
-    const blocksFromHtml = htmlToDraft('');
-    if (blocksFromHtml) {
-      const {contentBlocks, entityMap} = blocksFromHtml;
-      const contentState = ContentState.createFromBlockArray(contentBlocks,
-          entityMap);
-      const editorState = EditorState.createWithContent(contentState);
-      setEditorState(editorState);
-    }
+      }
+    }).finally(()=>{
+      // 초기화
+      setSubject('');
+      const initHashTags = [...hashTags.map(item => item.selected = false)]
+      setHashTags(initHashTags);
+    })
   }
 
   // tag를 처리한다.
@@ -100,21 +83,18 @@ const PostAdd = () => {
         />)
       }
     </div>
-
-    <Editor
-        localization={{
-          locale: 'ko',
-        }}
-        editorState={editorState}
-        toolbarClassName="rdw-editor-toolbar"
-        wrapperClassName="home-wrapper rdw-editor-wrapper"
-        editorClassName="home-editor rdw-editor-main"
-        onEditorStateChange={setEditorState}
-
-    />
-    <ButtonGroup size="lg" className="mb-2">
-      <Button onClick={onAdd}>등록</Button>
-    </ButtonGroup>
+    <div className="mb-2">
+      <ReactQuill
+          theme="snow" value={content} onChange={setContent}
+          modules={modules}
+          formats={formats}
+      />
+    </div>
+    <div className="d-flex align-items-end">
+      <ButtonGroup size="lg" className="m-2 ms-auto">
+        <Button onClick={onAdd}>등록</Button>
+      </ButtonGroup>
+    </div>
   </div>
 }
 

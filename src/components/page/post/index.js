@@ -140,7 +140,7 @@ const Post = () => {
         <Collapse in={searchBar} dimension="width" >
           <div className="m-2">
             <InputGroup style={{
-              minWidth: "100px"
+              minWidth: "200px"
             }}>
               <FormControl
                   type="text"
@@ -163,20 +163,20 @@ const Post = () => {
                   <Card>
                     <Card.Body>
                       <Card.Title style={{
-                        height: '50px'
+                        height: '70px'
                       }} className="text-truncate">{res.subject}</Card.Title>
                       <Card.Subtitle
                           className="mb-2 text-muted">{res.hashTag.map(
-                          tags => <span key={tags} className="m-1" style={{
+                          (tags,index) => <span key={`${tags}_${index}`} className="m-1" style={{
                             color: '#72c02c'
                           }}>#{tags}</span>)}</Card.Subtitle>
+                      <div className="d-flex justify-content-end">
                       <Card.Text>
-                        <div className="d-flex justify-content-end">
                           <Moment interval={1000}
                                   format="YYYY-MM-DD HH:MM"
                                   date={res.regDate}/>
-                        </div>
                       </Card.Text>
+                      </div>
                     </Card.Body>
                   </Card>
                 </Link>

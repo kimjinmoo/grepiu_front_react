@@ -10,6 +10,7 @@ import {NotificationContainer} from "react-notifications";
 import {useEffect} from "react";
 import ReactGA from "react-ga4";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-quill/dist/quill.snow.css';
 
 function App() {
 

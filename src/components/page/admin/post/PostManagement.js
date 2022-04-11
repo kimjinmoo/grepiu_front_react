@@ -60,7 +60,6 @@ const PostManagement = ({tabKey}) => {
 
   // 검색 이벤트
   const onSearchHandler = e => {
-    console.log(e.target.value);
     setPayload({...payload, searchText: e.target.value, page: 0})
   }
 
@@ -75,7 +74,7 @@ const PostManagement = ({tabKey}) => {
   return (
       <>
         <div>총 게시글 : {totalCount}</div>
-        <Collapse in={true} dimension="width" >
+        <Collapse in dimension="width" >
           <div className="m-2">
             <InputGroup>
               <FormControl
@@ -93,7 +92,7 @@ const PostManagement = ({tabKey}) => {
         <ListGroup variant="flush" as="ol">
           {
             posts?.map(obj => <ListGroup.Item as="li" key={obj.id}>
-              <Link to={`/admin/${obj.id}`}>
+              <Link to={`/admin/${obj.id}`} style={{textDecoration: 'none', color: '#0f0f0f'}}>
                 <div className="ms-2 me-auto">
                   <div className="fw-bold">{obj.subject}</div>
                 </div>

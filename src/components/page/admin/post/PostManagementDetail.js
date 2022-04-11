@@ -1,14 +1,18 @@
-import {Editor} from "react-draft-wysiwyg";
 import React, {useEffect, useState} from "react";
-import {ContentState, convertToRaw, EditorState} from "draft-js";
-import {Button, ButtonGroup, Form} from "react-bootstrap";
-import htmlToDraft from 'html-to-draftjs';
-import draftToHtml from 'draftjs-to-html';
+import {
+  Button,
+  ButtonGroup,
+  Form,
+  FormControl,
+  FormGroup
+} from "react-bootstrap";
 import {useNavigate, useParams} from "react-router-dom";
 import {fetchPostDetail} from "../../../../services/service";
 import AdminService from "../../../../services/admin.service"
 import {HTTP_OK, HTTP_OK_ACCEPT} from "../../../../services/http.code.utils";
 import {NotificationManager} from "react-notifications";
+import ReactQuill from "react-quill";
+import {formats, modules} from "../../../../constancs/quill_options";
 
 /**
  *
@@ -23,27 +27,19 @@ const PostManagementDetail = () => {
 
   // path ID
   const {id} = useParams();
-  const [detail, setDetail] = useState({
-    subject: "",
-    content: "",
-    hashTag: []
-  });
+  const [subject, setSubject] = useState('');
+  const [content, setContent] = useState('');
+
   const [hashTags, setHashTags] = useState([])
-  // 상태
-  const [editorState, setEditorState] = useState(
-      EditorState.createEmpty()
-  );
 
   // 수정
   const onModify = () => {
-    // 입력항목을 가져온다.
-    const editState = editorState.getCurrentContent();
     // 파라메터를 생성한다.
     let payload = {
       id: id,
-      subject: detail.subject,
+      subject: subject,
       hashTag: hashTags.filter(item => item.selected).map(item => item.name),
-      content: draftToHtml(convertToRaw(editState))
+      content: content
     };
     // 업데이트 진행
     AdminService.updatePost(payload).then(res => {
@@ -54,36 +50,37 @@ const PostManagementDetail = () => {
   }
 
   // 상세 보기
-  const fetchDetail = () => {
-    fetchPostDetail({
+  const fetchDetail = async () => {
+    const response = await fetchPostDetail({
       id
-    }).then(res => {
-      if (res.status === 200) {
-        setDetail(res.data.post);
-        // 선택된 Hash
-        let selectedTag = res.data.post?.hashTag;
-        // 성공시 tag를 Set 한다.
-        AdminService.fetchHashTags().then(tags => {
-          if (tags.status === 200) {
-            // 맵을 새로 그린다.
-            const obj = tags.data.map(tagObject => {
-              if (selectedTag.filter(item => item === tagObject.name).length
-                  > 0) {
-                tagObject.selected = true;
-              } else {
-                tagObject.selected = false;
-              }
-              return tagObject;
-            })
-            // 가공한 객체를 Set 한다.
-            setHashTags(obj);
-          }
-        })
-      } else {
-        window.alert("잘못된 호출입니다.");
-        navigate(-1);
-      }
-    })
+    });
+    if (response.status === 200) {
+      const obj = {...response.data.post};
+      setSubject(obj.subject);
+      setContent(obj.content)
+      // 선택된 Hash
+      let selectedTag = obj?.hashTag;
+      // 성공시 tag를 Set 한다.
+      AdminService.fetchHashTags().then(tags => {
+        if (tags.status === 200) {
+          // 맵을 새로 그린다.
+          const hash = tags.data.map(tagObject => {
+            if (selectedTag.filter(item => item === tagObject.name).length
+                > 0) {
+              tagObject.selected = true;
+            } else {
+              tagObject.selected = false;
+            }
+            return tagObject;
+          })
+          // 가공한 객체를 Set 한다.
+          setHashTags(hash);
+        }
+      })
+    } else {
+      window.alert("잘못된 호출입니다.");
+      navigate(-1);
+    }
   }
 
   // 삭제
@@ -100,18 +97,6 @@ const PostManagementDetail = () => {
     }
   }
 
-  // 읽기
-  const read = () => {
-    const blocksFromHtml = htmlToDraft(detail?.content);
-    if (blocksFromHtml) {
-      const {contentBlocks, entityMap} = blocksFromHtml;
-      const contentState = ContentState.createFromBlockArray(contentBlocks,
-          entityMap);
-      const editorState = EditorState.createWithContent(contentState);
-      setEditorState(editorState);
-    }
-  }
-
   // tag를 처리한다.
   const onChangeHashTag = e => {
     const tags = [...hashTags];
@@ -123,28 +108,21 @@ const PostManagementDetail = () => {
 
   useEffect(() => {
     // 데이터 조회
-    fetchDetail(id);
+    fetchDetail(id).finally();
   }, [id])
 
-  useEffect(() => {
-    if (detail) {
-      read();
-    }
-  }, [detail])
-
   return <>
-    <Form.Control
+    <FormControl
         type="text"
         id="subject"
         aria-describedby="subjectBlock"
         placeholder="제목"
         onChange={e => {
-          const update = {...detail, subject: e.target.value};
-          setDetail(update);
+          setSubject(e.target.value);
         }}
-        value={detail?.subject}
+        value={subject}
     />
-    <Form.Group className="mb-3" controlId="formBasicCheckbox">
+    <FormGroup className="mb-3" controlId="formBasicCheckbox">
       {
         hashTags?.map(tag => <Form.Check key={tag.name} inline type="checkbox"
                                          value={tag.name}
@@ -152,24 +130,22 @@ const PostManagementDetail = () => {
                                          label={tag.name}
                                          checked={tag.selected}/>)
       }
-    </Form.Group>
-    <Editor
-        localization={{
-          locale: 'ko',
-        }}
-        editorState={editorState}
-        toolbarClassName="rdw-editor-toolbar"
-        wrapperClassName="home-wrapper rdw-editor-wrapper"
-        editorClassName="home-editor rdw-editor-main"
-        onEditorStateChange={state => setEditorState((state))}
-
-    >
-    </Editor>
-    <ButtonGroup size="lg" className="mb-2">
-      <Button onClick={() => navigate(-1)}>뒤로가기</Button>
-      <Button onClick={onModify}>수정</Button>
-      <Button onClick={onDelete}>삭제</Button>
-    </ButtonGroup>
+    </FormGroup>
+    <ReactQuill
+        theme="snow" value={content} onChange={(content, delta, source, editor)=>{
+          setContent(content);
+        }
+    }
+        modules={modules}
+        formats={formats}
+    />
+    <div className="d-flex align-items-end">
+      <ButtonGroup size="lg" className="m-2 ms-auto">
+        <Button onClick={() => navigate(-1)}>뒤로가기</Button>
+        <Button onClick={onModify}>수정</Button>
+        <Button onClick={onDelete}>삭제</Button>
+      </ButtonGroup>
+    </div>
   </>
 }
 
