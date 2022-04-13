@@ -10,7 +10,8 @@ body {
 }
 
 .ql-container {
-  min-height: 45vh;
+  max-height: 55vh;
+  overflow-y: scroll;
 }
 
 code {
