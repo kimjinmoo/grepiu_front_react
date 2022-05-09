@@ -7,7 +7,6 @@ import ReactQuill from "react-quill";
 import {formats, modules} from "../../../../constancs/quill_options";
 
 const PostAdd = () => {
-
   // 제목
   const [subject, setSubject] = useState('');
   // 해시태그 데이터
@@ -83,8 +82,11 @@ const PostAdd = () => {
         />)
       }
     </div>
-    <div className="mb-2">
+    <div className="mb-2" style={{
+      position:'relative'
+    }}>
       <ReactQuill
+          className="ql-editor-h50"
           theme="snow" value={content} onChange={setContent}
           modules={modules}
           formats={formats}

@@ -9,6 +9,7 @@ import PostManagementDetail
 import Cloud from "../components/page/cloud";
 import Support from "../components/page/support";
 import PostDetails from "../components/page/post/PostDetails";
+import LottoStatistics from "../components/page/toy/lotto/LottoStatistics";
 
 export const webRoutes = [
   {
@@ -43,6 +44,12 @@ export const webRoutes = [
     path: "toy",
     name: "토이프로젝트",
     element: <Toy/>,
+    authorize: false
+  },
+  {
+    path: "toy/lotto/statistics",
+    name: "토이프로젝트",
+    element: <LottoStatistics/>,
     authorize: false
   },
   {

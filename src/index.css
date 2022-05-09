@@ -9,8 +9,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.ql-container {
-  max-height: 55vh;
+/*.ql-toolbar {*/
+/*  position: fixed;*/
+/*  background-color: white;*/
+/*}*/
+.ql-editor {
+  min-height: 50vh;
+  max-height: 50vh;
   overflow-y: scroll;
 }
 

@@ -1,9 +1,17 @@
 import {useEffect, useState} from 'react';
 import {fetchPostDetail} from "../../../services/service";
 import {Link, useParams} from "react-router-dom";
-import './quill.snow.css';
 import {Container} from "react-bootstrap";
 import Moment from "react-moment";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  .ql-editor {
+     min-height: 100%;
+     max-height: 100%;
+     overflow-y: hidden;
+  }
+`;
 
 /**
  *
@@ -33,7 +41,7 @@ const PostDetails = () => {
     fetchDetail(id);
   }, [id])
 
-  return <Container>
+  return <Wrapper><Container>
     <div className="ql-snow w-100">{
       details ?
           <>
@@ -78,6 +86,7 @@ const PostDetails = () => {
       </div>
     </div>
   </Container>
+  </Wrapper>
 }
 
 export default PostDetails;
