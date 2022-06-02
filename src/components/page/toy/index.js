@@ -13,9 +13,22 @@ const Toy = () => {
 
   const [index, setIndex] = useState(0);
 
+
+
   return (<Wrapper>
     <Container>
       <Carousel fade activeIndex={index} onSelect={(index, e)=>setIndex(index)}>
+        <Carousel.Item className="vh-60">
+          <img
+              className="d-block w-100"
+              src="/resources/images/store.jpg"
+              alt="로또 추첨기"
+          />
+          <Carousel.Caption>
+            <h3>로또 추첨기</h3>
+            <p>재미로 하는 AI 로또 추첨기</p>
+          </Carousel.Caption>
+        </Carousel.Item>
         <Carousel.Item className="vh-60">
           <img
               className="d-block w-100"

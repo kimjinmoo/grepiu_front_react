@@ -2,18 +2,21 @@
 // 설명
 import {Link} from "react-router-dom";
 import Vote from "./vote";
+import Lotto from "./lotto";
 
 const Description = ({index = 0}) => {
 
   const display = (index) => {
     switch (index) {
       case 0:
-        return grepPlace();
+        return Lotto();
       case 1:
-        return woori();
+        return grepPlace();
       case 2:
-        return crawling();
+        return woori();
       case 3:
+        return crawling();
+      case 4:
         return Vote();
       default :
         return defaultDescription();

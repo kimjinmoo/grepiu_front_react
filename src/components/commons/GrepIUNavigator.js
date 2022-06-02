@@ -1,4 +1,4 @@
-import {useLocation} from "react-router-dom";
+import {useLocation, useSearchParams} from "react-router-dom";
 import {useEffect, useState} from 'react';
 
 const GrepIUNavigator = () => {

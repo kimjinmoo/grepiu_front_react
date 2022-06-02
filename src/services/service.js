@@ -39,11 +39,7 @@ export const fetchPosts = async ({
 export const fetchCloud = async ({
   parentId
 }) => {
-  const response = await instance.get(`/grepiu/cloud/?parentId=${parentId}`, {
-    headers: {
-      'Authorization': `Bearer 9757878f-c789-4421-8af1-a5be9f8373cb`
-    }
-  })
+  const response = await instance.get(`/grepiu/cloud/?parentId=${parentId}`)
 
   return response.data
 }
@@ -52,9 +48,7 @@ export const fetchCloud = async ({
 export const readBlobCloud = async (id, setPercent = (evt) => {
 }) => {
   return instance.get(`/grepiu/cloud/${id}`, {
-    responseType: 'blob', headers: {
-      'Authorization': `Bearer 9757878f-c789-4421-8af1-a5be9f8373cb`
-    },
+    responseType: 'blob',
     onDownloadProgress: setPercent
   }).then((response) => response.data).catch(e => {
     alert(e);
@@ -65,10 +59,6 @@ export const readBlobCloud = async (id, setPercent = (evt) => {
 export const updateName = async ({id, name}) => {
   return instance.put(`/grepiu/cloud/${id}`, {
     rename: name
-  }, {
-    headers: {
-      'Authorization': `Bearer 9757878f-c789-4421-8af1-a5be9f8373cb`
-    }
   }).then(res => res.data)
 }
 
@@ -85,7 +75,6 @@ export const newFolder = async ({
   const response = await instance.post('/grepiu/cloud/', formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
-      'Authorization': `Bearer 9757878f-c789-4421-8af1-a5be9f8373cb`
     }
   });
   return response;
@@ -95,9 +84,14 @@ export const newFolder = async ({
 export const deleteFolder = async ({
   id
 }) => {
-  return instance.delete(`/grepiu/cloud/${id}`, {
-    headers: {
-      'Authorization': `Bearer 9757878f-c789-4421-8af1-a5be9f8373cb`
-    }
-  }).then(res => res.data)
+  return instance.delete(`/grepiu/cloud/${id}`).then(res => res.data)
+}
+
+// 최신 회차를 가져오다.
+export const fetchLottoHistory = async ({round}) => {
+  const url = `https://lotto.grepiu.com/history${round ? "?roundNum=" + round
+      : ""}`;
+  console.log(url);
+  const response = await fetch(url);
+  return response.json();
 }
