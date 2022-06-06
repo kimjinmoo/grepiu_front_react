@@ -11,6 +11,10 @@ import Support from "../components/page/support";
 import PostDetails from "../components/page/post/PostDetails";
 import LottoStatistics from "../components/page/toy/lotto/LottoStatistics";
 import Lotto from "../components/page/toy/lotto";
+import LottoLicense from "../components/page/toy/lotto/LottoLicense";
+import LottoAiLogic from "../components/page/toy/lotto/LottoAiLogic";
+import LottoTotalStatistics
+  from "../components/page/toy/lotto/LottoTotalStatistics";
 
 export const webRoutes = [
   {
@@ -55,8 +59,26 @@ export const webRoutes = [
   },
   {
     path: "toy/lotto/statistics",
-    name: "토이프로젝트",
+    name: "로또-통계",
     element: <LottoStatistics/>,
+    authorize: false
+  },
+  {
+    path: "toy/lotto/total-statistics",
+    name: "로또-통계",
+    element: <LottoTotalStatistics/>,
+    authorize: false
+  },
+  {
+    path: "toy/lotto/about",
+    name: "로또-오픈소스라이센스",
+    element: <LottoLicense/>,
+    authorize: false
+  },
+  {
+    path: "toy/lotto/ai",
+    name: "로또-로직",
+    element: <LottoAiLogic/>,
     authorize: false
   },
   {
