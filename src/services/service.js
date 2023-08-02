@@ -91,7 +91,6 @@ export const deleteFolder = async ({
 export const fetchLottoHistory = async ({round}) => {
   const url = `https://lotto.grepiu.com/history${round ? "?roundNum=" + round
       : ""}`;
-  console.log(url);
   const response = await fetch(url);
   return response.json();
 }

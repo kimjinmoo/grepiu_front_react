@@ -1,14 +1,8 @@
-import {
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
-  LOGOUT
-} from './type';
+import {LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT} from './type';
 
 import AuthService from '../services/auth.service';
 import Store from '../helper/auth.store.utils';
-import instance from "../services/httpClient";
+import {NotificationManager} from "react-notifications";
 
 // 로그인
 export const login = (id, password) => (dispatch) => {
@@ -31,7 +25,8 @@ export const login = (id, password) => (dispatch) => {
       dispatch({
         type: LOGIN_FAIL
       })
-
+      // 알림처리
+      NotificationManager.warning(user.message);
       return Promise.reject()
     }
 

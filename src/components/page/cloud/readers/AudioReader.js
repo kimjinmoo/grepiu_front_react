@@ -20,7 +20,6 @@ const AudioReader = ({
 
   const fetchFile = () => {
     readBlobCloud(id).then(res => {
-      console.log(res);
       setAudio(URL.createObjectURL(res));
     })
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import {Provider} from 'react-redux'
 
 import './index.css';
@@ -17,6 +17,7 @@ import thunk from "redux-thunk";
 import {BrowserRouter} from "react-router-dom";
 import ReactGA from "react-ga4";
 
+// 미들웨어 추가
 const enhancer =
     process.env.NODE_ENV === "production"
         ? compose(applyMiddleware(thunk))
@@ -24,18 +25,21 @@ const enhancer =
 
 // 위에서 만든 reducer를 스토어 만들때 넣어줍니다
 const store = createStore(rootReducer, enhancer);
+
 // 구글 에널리틱스 Set
 ReactGA.initialize('G-K8Z60TN09X');
 
-ReactDOM.render(
+// react 18 변경
+const rootNode = document.getElementById('root');
+
+ReactDOM.createRoot(rootNode).render(
     <Provider store={store}>
       <React.StrictMode>
         <BrowserRouter>
           <App/>
         </BrowserRouter>
       </React.StrictMode>
-    </Provider>,
-    document.getElementById('root')
+    </Provider>
 );
 
 reportWebVitals();

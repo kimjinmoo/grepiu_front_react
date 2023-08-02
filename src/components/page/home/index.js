@@ -1,22 +1,30 @@
 import React from 'react';
 import {Card, Col, Container, Row} from "react-bootstrap";
-import Gradient from 'rgt'
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  #hello {
+    font-size: 10vw;
+    background: -webkit-linear-gradient(#00DFD8, #007CF0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+`;
 
 const Home = () => {
 
-  return <>
+  return <Wrapper>
     <div>
       <Container>
         <div className="text-center">
-          <h2 data-aos="fade-right"># OOPS</h2>
+          <h2 data-aos="fade-right">#ERROR #FAIL</h2>
         </div>
         <div className="text-center">
-          <p style={{
-            fontSize: '10vw'
-          }}>
-            <Gradient dir="left-to-right" from="#00DFD8" to="#007CF0">
-              HELLO WORLD
-            </Gradient>
+          <p id="hello">
+            HELLO
+          </p>
+          <p id="hello">
+            WORLD
           </p>
         </div>
       </Container>
@@ -139,7 +147,7 @@ const Home = () => {
         </div>
       </Container>
     </div>
-  </>
+  </Wrapper>
 }
 
 export default Home;

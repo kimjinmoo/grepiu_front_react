@@ -19,7 +19,7 @@ function App() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(()=>{
-    console.log(searchParams.get("isNavbarOff"));
+    //console.log(searchParams.get("isNavbarOff"));
   },[searchParams])
 
   useEffect(() => {
@@ -45,7 +45,7 @@ function App() {
                     <>
                       {
                         page.authorize ?
-                            <RequireAuth children={page.element}/>
+                            <RequireAuth children={page.element} authorize={page.authorize}/>
                             : page.element
                       }
                     </>

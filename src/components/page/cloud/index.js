@@ -18,8 +18,6 @@ import {logout} from "../../../actions/authorization";
 const Cloud = () => {
   // user
   const {user: currentUser} = useSelector(state => state.authorization);
-  // dispatch
-  const dispatch = useDispatch();
 
   const [parentId, setParentId] = useState('');
   const [upperInfo, setUpperInfo] = useState({});
@@ -44,16 +42,6 @@ const Cloud = () => {
       setUpperInfo(data.upperInfo);
       setFolderName(data.upperInfo.name ? data.upperInfo.name : '')
     }).catch(e=>{
-      // 토큰 확인
-      AdminService.tokenValidation({
-        token: currentUser.accessToken
-      }).then(response=>{
-        if(response.status === HTTP_OK) {
-          if(!response.data.isValid) {
-            dispatch(logout());
-          }
-        }
-      })
       NotificationManager.warning(e.message);
     });
   }

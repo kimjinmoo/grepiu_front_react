@@ -17,7 +17,7 @@ const Toy = () => {
 
   return (<Wrapper>
     <Container>
-      <Carousel fade activeIndex={index} onSelect={(index, e)=>setIndex(index)}>
+      <Carousel interval={null} fade activeIndex={index} onSelect={(index, e)=>setIndex(index)}>
         <Carousel.Item className="vh-60">
           <img
               className="d-block w-100"

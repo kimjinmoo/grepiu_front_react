@@ -21,7 +21,7 @@ const Vote = () => {
   // 투표
   const [vote, setVote] = useState([]);
 
-  let client = useRef(null);
+  const client = useRef(null);
 
   // 투표
   const fetch = () => {
@@ -82,6 +82,7 @@ const Vote = () => {
     client.current = new StompJs.Client({
       brokerURL: "wss://conf.grepiu.com/ws",
       debug: function (str) {
+        // console.log(str);
       },
       reconnectDelay: 5000,
       heartbeatIncoming: 4000,
@@ -110,9 +111,11 @@ const Vote = () => {
   useEffect(() => {
     initWs();
     return () => {
-      client.current.disconnect();
+      if(client.current?.status) {
+        client.current.disconnect();
+      }
     }
-  }, [])
+  }, [client])
 
   return <Container>
     <h3>*자신의 ID를 잘 보관하여 주세요. 리스트에는 max 10개까지만 나옵니다.</h3>

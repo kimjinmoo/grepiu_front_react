@@ -13,13 +13,13 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   // 로그인
-  const onLogin = () => {
+  const onLogin = event => {
+    // 이벤트 전파 막기
+    const form = event.preventDefault();
     if (id && password) {
       dispatch(login(id, password)).then(() => {
-        console.log('성공');
         return <Navigate to="/" replace/>
       }).catch(() => {
-        console.log('실패');
       });
     }
   }
@@ -27,7 +27,7 @@ const LoginForm = () => {
   if (currentUser) {
     return <Navigate to="/" replace/>
   }
-  return <>
+  return <Form onSubmit={onLogin}>
     <div className="text-center">
       <h1>#Login</h1>
       <p>아래 로그인을 지원합니다.</p>
@@ -37,25 +37,34 @@ const LoginForm = () => {
         <Form.Control
             type="text"
             id="id"
+            className="mb-2"
             onChange={event => setId(event.target.value)}
             placeholder="아이디를 입력하여 주세요"
+            style={{
+              width: '350px'
+            }}
             value={id}
         />
         <Form.Control
             type="password"
             id="password"
+            className="mb-4"
             onChange={event => setPassword(event.target.value)}
             placeholder="비밀번호를 입력하여 주세요"
             value={password}
+            style={{
+              width: '350px'
+            }}
             autoComplete="off"
         />
-        <div className="text-center m-3">
-          <Button type="button" variant="primary" className="mb-3"
+        <div className="text-center">
+          <Button type="submit" variant="primary" className="mb-3"
+                  style={{width: '350px'}}
                   onClick={onLogin}>로그인</Button>
         </div>
       </div>
     </div>
-  </>
+  </Form>
 }
 
 export default LoginForm;

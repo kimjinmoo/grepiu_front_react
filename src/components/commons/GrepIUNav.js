@@ -4,6 +4,13 @@ import {LinkContainer} from "react-router-bootstrap";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../actions/authorization";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+  .nav.navbar-nav.navbar-right li a {
+    color: blue;
+  }
+`;
 
 const GrepIUNav = () => {
   // user
@@ -15,21 +22,21 @@ const GrepIUNav = () => {
   const onLogout = () => {
     dispatch(logout())
   }
-  return <>
-    <Navbar bg="dark" variant="dark" expand="lg" sticky>
+  return <Wrapper>
+    <Navbar collapseOnSelect bg="dark" data-bs-theme="dark" expand="lg" sticky="top">
       <Container fluid>
-        <Navbar.Brand as={Link} to="/">GrepIU</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/" className="navbar-toggle">GrepIU</Navbar.Brand>
         <Navbar.Toggle/>
         <Navbar.Collapse>
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/about" className="text-white-50">소개</Nav.Link>
-            <Nav.Link as={Link} to="/post" className="text-white-50">포스팅</Nav.Link>
-            <Nav.Link as={Link} to="/toy" className="text-white-50">토이프로젝트</Nav.Link>
-            <Nav.Link as={Link} to="/cloud" className="text-white-50">클라우드</Nav.Link>
+            <Nav.Link as={Link} to="/about">소개</Nav.Link>
+            <Nav.Link as={Link} to="/post">포스팅</Nav.Link>
+            <Nav.Link as={Link} to="/toy">토이프로젝트</Nav.Link>
+            <Nav.Link as={Link} to="/cloud">클라우드</Nav.Link>
             {
               currentUser?.role === 'SUPER_ADMIN'?<Nav.Link as={Link} to="/admin" className="text-white-50">관리자</Nav.Link>:<></>
             }
-            <Nav.Link as={Link} to="/support" className="text-white-50">지원받기</Nav.Link>
+            <Nav.Link as={Link} to="/support">지원받기</Nav.Link>
           </Nav>
           {
             currentUser ?
@@ -47,6 +54,6 @@ const GrepIUNav = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  </>
+  </Wrapper>
 }
 export default GrepIUNav;

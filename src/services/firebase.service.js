@@ -20,6 +20,28 @@ export const fetchLottoNumberByRound = async  (round) => {
 
 /**
  *
+ * 데이터 총 카운트를 가져온다.
+ *
+ * @returns {Promise<number>}
+ */
+export const fetchLottoNumberCount = async () => {
+  const lottoQuery = await getDocs(query(collection(lottoDB, 'lotto')));
+  return lottoQuery.docs.flatMap(doc => doc.data().numbers).length;
+}
+
+/**
+ *
+ * 데이터 총 카운트를 가져온다.
+ *
+ * @returns {Promise<number>}
+ */
+export const fetchUserCount = async () => {
+  const lottoQuery = await getDocs(query(collection(lottoDB, 'user')));
+  return lottoQuery.docs.flatMap(doc => doc.data()).length;
+}
+
+/**
+ *
  * 문의하기
  *
  * @param subject 제목
