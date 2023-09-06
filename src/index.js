@@ -34,11 +34,9 @@ const rootNode = document.getElementById('root');
 
 ReactDOM.createRoot(rootNode).render(
     <Provider store={store}>
-      <React.StrictMode>
-        <BrowserRouter>
-          <App/>
-        </BrowserRouter>
-      </React.StrictMode>
+      <BrowserRouter>
+        <App/>
+      </BrowserRouter>
     </Provider>
 );
 

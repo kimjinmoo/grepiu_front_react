@@ -31,7 +31,12 @@ const GrepIUNav = () => {
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/about">소개</Nav.Link>
             <Nav.Link as={Link} to="/post">포스팅</Nav.Link>
-            <Nav.Link as={Link} to="/toy">토이프로젝트</Nav.Link>
+            <NavDropdown title="토이프로젝트" id="basic-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/toy">한방! 로또</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/toy">Grep Place</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/toy">배틀 히어로</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/toy">투표 만들기</NavDropdown.Item>
+            </NavDropdown>
             <Nav.Link as={Link} to="/cloud">클라우드</Nav.Link>
             {
               currentUser?.role === 'SUPER_ADMIN'?<Nav.Link as={Link} to="/admin" className="text-white-50">관리자</Nav.Link>:<></>

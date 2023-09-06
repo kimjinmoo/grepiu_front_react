@@ -6,6 +6,12 @@ const fetchVote = async () => {
   return response;
 };
 
+// 투포 항목을 ID로 조회한다.
+const fetchVoteById = async (id) => {
+  const response = await instance.get(`/grepiu/lab/vote/${id}`);
+  return response;
+}
+
 // 투표를 한다.
 const updateVote = async ({
     id,
@@ -22,5 +28,6 @@ const updateVote = async ({
 
 export default {
   fetchVote,
+  fetchVoteById,
   updateVote
 }

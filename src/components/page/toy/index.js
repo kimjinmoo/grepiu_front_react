@@ -63,7 +63,7 @@ const Toy = () => {
             <p>크롤링을 통한 근방의 영화관 및 영화 찾기</p>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item className="vh-60">
+        <Carousel.Item className="vh-60">ø
           <img
               className="d-block w-100"
               src="/resources/images/websocket.jpg"
@@ -76,8 +76,8 @@ const Toy = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+      <Description index={index}/>
     </Container>
-    <Description index={index}/>
   </Wrapper>)
 };
 

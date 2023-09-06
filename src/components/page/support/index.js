@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Form} from "react-bootstrap";
+import {Button, Container, Form} from "react-bootstrap";
 import ReactQuill from "react-quill";
 import {formats, modules} from "../../../constancs/quill_options";
 import {addSupportReport} from "../../../services/firebase.service";
@@ -23,7 +23,7 @@ const Support = () => {
     NotificationManager.success('접속 완료 되었습니다.');
   }
 
-  return <div>
+  return <Container>
     <Form.Select value={type} aria-label="선택하여 주세요"
                  onChange={e => setType(e.target.value)}
     >
@@ -55,7 +55,7 @@ const Support = () => {
     <div className="d-flex align-items-end">
       <Button className="ms-auto m-2" onClick={submit}>문의하기</Button>
     </div>
-  </div>
+  </Container>
 };
 
 export default Support;

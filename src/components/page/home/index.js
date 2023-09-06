@@ -1,6 +1,7 @@
 import React from 'react';
 import {Card, Col, Container, Row} from "react-bootstrap";
 import styled from "styled-components";
+import bg from './bg.mp4';
 
 const Wrapper = styled.div`
   #hello {
@@ -11,21 +12,69 @@ const Wrapper = styled.div`
   }
 `;
 
+const VideoBg = styled.div`
+  .bg {
+    width: 100%;
+    height: 800px;
+    overflow: hidden;
+    margin: 0px auto;
+    position: relative;
+  }
+  video {
+    width: 100%;
+  }
+  .text {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  .text p {
+    text-align: center;
+    font-size: 48px;
+    color: #ffffff;
+  }
+  
+  @media(max-width:664px) {
+    .bg {
+      height: auto;
+    }
+    video {
+      height: 100%;
+    }
+    .text p {
+      font-size: 24px;
+    }
+  }
+`;
+
 const Home = () => {
 
   return <Wrapper>
     <div>
       <Container>
         <div className="text-center">
-          <h2 data-aos="fade-right">#ERROR #FAIL</h2>
+          <h2 data-aos="fade-right">#FUNNY #OPPS</h2>
         </div>
         <div className="text-center">
-          <p id="hello">
-            HELLO
-          </p>
-          <p id="hello">
-            WORLD
-          </p>
+          <VideoBg>
+            <div className="bg">
+              <video loop autoPlay muted playsInline>
+                <source src={bg} type="video/mp4" />
+              </video>
+              <div className="text">
+                <div className="text-center">
+                  <p id="hello">
+                    PLAY,
+                  </p>
+                  <p id="hello">
+                    GrepIU KR
+                  </p>
+                </div>
+              </div>
+            </div>
+          </VideoBg>
         </div>
       </Container>
       <Container>
@@ -43,12 +92,10 @@ const Home = () => {
                   <Card.Subtitle
                       className="mb-2 text-muted">개발/일상/쓰고싶은거</Card.Subtitle>
                   <Card.Text>
-                    <p>
-                      - 분류는 Tag로 구분, Tag 분류 보기 가능, 반응형<br/>
-                      - MongoDB 사용<br/>
-                      - 검색 기능(대소문자 가림)<br/>
-                      - 자동 스크롤 펴짐<br/>
-                    </p>
+                    - 분류는 Tag로 구분, Tag 분류 보기 가능, 반응형<br/>
+                    - MongoDB 사용<br/>
+                    - 검색 기능(대소문자 가림)<br/>
+                    - 자동 스크롤 펴짐<br/>
                   </Card.Text>
                   <Card.Link href="/post">보러가기</Card.Link>
                 </Card.Body>
@@ -63,12 +110,10 @@ const Home = () => {
                   <Card.Subtitle className="mb-2 text-muted">이것저것 해보고 싶은
                     것들</Card.Subtitle>
                   <Card.Text>
-                    <p>
-                      - 토이프로젝트 앱들<br/>
-                      - 실시간 투표<br/>
-                      - 크롤링 테스트<br/>
-                      - 토이프로젝트 슬랙 채널<br/>
-                    </p>
+                    - 토이프로젝트 앱들<br/>
+                    - 실시간 투표<br/>
+                    - 크롤링 테스트<br/>
+                    - 토이프로젝트 슬랙 채널<br/>
                   </Card.Text>
                   <Card.Link href="/toy">보러가기</Card.Link>
                 </Card.Body>
@@ -83,12 +128,10 @@ const Home = () => {
                   <Card.Subtitle className="mb-2 text-muted">개인
                     저장함(로그인필요)</Card.Subtitle>
                   <Card.Text>
-                    <p>
-                      - HTML5를 통한 파일 제어<br/>
-                      - Web을 통한 자료 공유<br/>
-                      - 음악 및 Text 읽기<br/>
-                      - AWS S3사용<br/>
-                    </p>
+                    - HTML5를 통한 파일 제어<br/>
+                    - Web을 통한 자료 공유<br/>
+                    - 음악 및 Text 읽기<br/>
+                    - AWS S3사용<br/>
                   </Card.Text>
                   <Card.Link href="/cloud">보러가기</Card.Link>
                 </Card.Body>

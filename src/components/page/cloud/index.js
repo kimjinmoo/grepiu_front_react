@@ -6,7 +6,15 @@ import {
   newFolder,
   updateName
 } from "../../../services/service";
-import {Button, ButtonGroup, Col, Form, InputGroup, Row} from "react-bootstrap";
+import {
+  Button,
+  ButtonGroup,
+  Col,
+  Container,
+  Form,
+  InputGroup,
+  Row
+} from "react-bootstrap";
 import ImageReader from "./readers/ImageReader";
 import AudioReader from "./readers/AudioReader";
 import FileAsSave from "./readers/FileAsSave";
@@ -123,7 +131,7 @@ const Cloud = () => {
     })
   }
 
-  return <>
+  return <Container>
     <Form className="mb-3">
       <Row className="m-1">
         <ButtonGroup as={Col}>
@@ -171,7 +179,7 @@ const Cloud = () => {
     {
       popup && reader()
     }
-  </>
+  </Container>
 }
 
 export default Cloud;

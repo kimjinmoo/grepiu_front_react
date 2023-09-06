@@ -24,7 +24,7 @@ const RequireAuth = ({
   if(authorize) {
     // 토큰 확인
     AdminService.tokenValidation({
-      token: user.user.accessToken
+      token: user.user?.accessToken
     }).then(response=>{
       if(response.status === HTTP_OK) {
         if(!response.data.isValid) {

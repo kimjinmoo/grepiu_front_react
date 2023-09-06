@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Tab, Tabs} from "react-bootstrap";
+import {Container, Tab, Tabs} from "react-bootstrap";
 import PostManagement from "./post/PostManagement";
 import PostAdd from "./post/PostAdd";
 import PostAddHashTags from "./post/PostAddHashTags";
@@ -7,7 +7,7 @@ import PostAddHashTags from "./post/PostAddHashTags";
 const Admin = () => {
   const [key, setKey] = useState('post');
 
-  return <>
+  return <Container>
     <Tabs activeKey={key}  onSelect={(k) => setKey(k)} id="admin-tab" className="mb-3">
       <Tab eventKey="post" title="포스팅 관리">
         <PostManagement tabKey={key}/>
@@ -22,7 +22,7 @@ const Admin = () => {
         <>test3</>
       </Tab>
     </Tabs>
-  </>
+  </Container>
 }
 
 export default Admin;

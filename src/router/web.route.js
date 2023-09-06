@@ -15,6 +15,7 @@ import LottoLicense from "../components/page/toy/lotto/LottoLicense";
 import LottoAiLogic from "../components/page/toy/lotto/LottoAiLogic";
 import LottoTotalStatistics
   from "../components/page/toy/lotto/LottoTotalStatistics";
+import Vote from "../components/page/toy/vote/Vote";
 
 export const webRoutes = [
   {
@@ -67,6 +68,12 @@ export const webRoutes = [
     path: "toy/lotto/total-statistics",
     name: "로또-통계",
     element: <LottoTotalStatistics/>,
+    authorize: false
+  },
+  {
+    path: "toy/vote/:id",
+    name: "투표 복사하기",
+    element: <Vote/>,
     authorize: false
   },
   {

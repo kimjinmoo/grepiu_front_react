@@ -200,6 +200,7 @@ const Vote = () => {
                     )
                   }
                 </Card.Text>
+                <Button variant="outline-secondary">클립보드 복사</Button>
               </Card.Body>
             </Card>
           </>
