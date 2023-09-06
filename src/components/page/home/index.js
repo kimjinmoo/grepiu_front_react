@@ -5,7 +5,7 @@ import bg from './bg.mp4';
 
 const Wrapper = styled.div`
   #hello {
-    font-size: 10vw;
+    font-size: 13vh;
     background: -webkit-linear-gradient(#00DFD8, #007CF0);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -55,7 +55,7 @@ const Home = () => {
     <div>
       <Container>
         <div className="text-center">
-          <h2 data-aos="fade-right">#FUNNY #OPPS</h2>
+          <h2 data-aos="fade-right">#FUNNY #OOPS</h2>
         </div>
         <div className="text-center">
           <VideoBg>
