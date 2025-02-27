@@ -16,6 +16,8 @@ import LottoAiLogic from "../components/page/toy/lotto/LottoAiLogic";
 import LottoTotalStatistics
   from "../components/page/toy/lotto/LottoTotalStatistics";
 import Vote from "../components/page/toy/vote/Vote";
+import Sign from "../components/page/project/sign";
+import Project from "../components/page/project";
 
 export const webRoutes = [
   {
@@ -44,6 +46,18 @@ export const webRoutes = [
     path: "post/:id",
     name: "포스팅 상세보기",
     element: <PostDetails/>,
+    authorize: false
+  },
+  {
+    path: "project",
+    name: "프로젝트",
+    element: <Project/>,
+    authorize: false
+  },
+  {
+    path: "project/sign",
+    name: "프로젝트",
+    element: <Sign/>,
     authorize: false
   },
   {

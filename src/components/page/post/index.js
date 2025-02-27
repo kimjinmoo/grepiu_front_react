@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {
   Card,
-  Col, Collapse,
-  Container, Fade, Form,
-  FormControl, InputGroup,
+  Col,
+  Container,
+  FormControl,
+  InputGroup,
   ProgressBar,
   Row
 } from "react-bootstrap";
@@ -13,6 +14,7 @@ import {Link} from "react-router-dom";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import Moment from "react-moment";
 import {BsSearch} from "react-icons/bs";
+import {useCollapse} from 'react-collapsed'
 
 /**
  *
@@ -40,6 +42,10 @@ const Post = () => {
   const [totalCount, setTotalCount] = useState(0);
   // 페이지
   const [totalPage, setTotalPage] = useState(0);
+
+  const [isExpanded, setExpanded] = useState(false)
+  const {getCollapseProps, getToggleProps} = useCollapse(
+      {isExpanded, duration: 100})
 
   // 태그를 가져온다.
   const fetchTags = () => {
@@ -119,15 +125,12 @@ const Post = () => {
     setPayload({...payload, page: 0, hashTags: filter.hashTags})
   }
 
-  // 검색 바
-  const [searchBar, setSearchBar] = useState(false);
-
   // 검색 바 토클
   const searchBarToggle = () => {
-    if (searchBar) {
+    if (isExpanded) {
       setPayload({...payload, page: 0, searchText: ''})
     }
-    setSearchBar(!searchBar);
+    setExpanded(!isExpanded);
   }
 
   return <Container>
@@ -137,7 +140,7 @@ const Post = () => {
                                                              currentTags={payload.hashTags}
                                                              onClickHandler={onHashTagSearch}/></Col>
       <Col xs={12} lg={10}>
-        <Collapse in={searchBar} dimension="width" >
+        <section {...getCollapseProps()}>
           <div className="m-2">
             <InputGroup style={{
               minWidth: "200px"
@@ -154,7 +157,7 @@ const Post = () => {
               </InputGroup.Text>
             </InputGroup>
           </div>
-        </Collapse>
+        </section>
         {
           lists.map(res =>
               <div key={res.id} className="m-2">
@@ -167,15 +170,16 @@ const Post = () => {
                       }} className="text-truncate">{res.subject}</Card.Title>
                       <Card.Subtitle
                           className="mb-2 text-muted">{res.hashTag.map(
-                          (tags,index) => <span key={`${tags}_${index}`} className="m-1" style={{
+                          (tags, index) => <span key={`${tags}_${index}`}
+                                                 className="m-1" style={{
                             color: '#72c02c'
                           }}>#{tags}</span>)}</Card.Subtitle>
                       <div className="d-flex justify-content-end">
-                      <Card.Text>
+                        <Card.Text>
                           <Moment interval={1000}
                                   format="YYYY-MM-DD HH:MM"
                                   date={res.regDate}/>
-                      </Card.Text>
+                        </Card.Text>
                       </div>
                     </Card.Body>
                   </Card>

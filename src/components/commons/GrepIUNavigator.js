@@ -35,6 +35,9 @@ const GrepIUNavigator = () => {
       case "/toy/lotto":
         setNavi("ㅈㅈㄱㄹㄸ")
         break;
+      case "/project/sign":
+        setNavi("서명하기 App")
+        break;
       default :
         if (path.indexOf("post/") > -1) {
           setNavi("상세보기");
