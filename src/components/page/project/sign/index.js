@@ -46,7 +46,7 @@ const Sign = () => {
   const [index, setIndex] = useState(0);
 
   return (<Wrapper>
-    <Container className="vh-65 mt-3" style={{
+    <Container className="mt-3" style={{
       borderRadius: "20px 20px 20px 20px",
       backgroundColor: "#ecf0f1"
     }}>
@@ -73,7 +73,7 @@ const Sign = () => {
               </div>
             </div>
           </Col>
-          <Col sx={8} style={{
+          <Col sx={8} className="d-none d-md-block" style={{
             textAlign: "center"
           }}>
             <div style={{
