@@ -60,7 +60,7 @@ const Sign = () => {
               <span style={{
                 fontWeight: "bold",
                 fontSize: "20px"
-              }}><a href="https://gsapi-s3.s3.ap-northeast-2.amazonaws.com/sign/sign-1.0.0.apk">다운로드(1.0.0)</a></span>
+              }}><a href="https://gsapi-s3.s3.ap-northeast-2.amazonaws.com/sign/sign-1.0.0.apk" download>다운로드(1.0.0)</a></span>
               <span className="m-3"></span>
               <span style={{
                 fontWeight: "bold",
